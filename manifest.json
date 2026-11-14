@@ -1,0 +1,11 @@
+
+{
+  "name": "AGAPAY SYSTEM",
+  "short_name": "AGAPAY",
+  "description": "Automated Gauge and Pumping Assessment Yield",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#142b49"
+}
