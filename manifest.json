@@ -7,5 +7,13 @@
   "scope": "./",
   "display": "standalone",
   "background_color": "#ffffff",
-  "theme_color": "#142b49"
+  "theme_color": "#142b49",
+  "icons": [
+    {
+      "src": "./agapay-icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
 }
