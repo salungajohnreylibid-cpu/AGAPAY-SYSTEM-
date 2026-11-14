@@ -1,1 +1,411 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AGAPAY SYSTEM | Water Monitoring</title>
+<style>
+:root {
+  --blue: #1769d2;
+  --dark: #142b49;
+  --light: #f3f7fc;
+  --muted: #718096;
+  --border: #e5edf6;
+  --green: #16a36a;
+  --yellow: #e5a000;
+  --red: #df4b55;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: var(--light);
+  color: var(--dark);
+}
+header {
+  background: white;
+  border-bottom: 1px solid var(--border);
+  padding: 18px 5%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.logo {
+  width: 43px;
+  height: 43px;
+  border-radius: 12px;
+  background: var(--blue);
+  color: white;
+  display: grid;
+  place-items: center;
+  font-size: 23px;
+}
+.brand h2 { margin: 0; font-size: 20px; letter-spacing: 1px; }
+.brand p { margin: 4px 0 0; color: var(--muted); font-size: 11px; }
+.demo {
+  background: #fff4d9;
+  color: #936000;
+  padding: 8px 12px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: bold;
+}
+main {
+  max-width: 1250px;
+  margin: auto;
+  padding: 30px 5%;
+}
+.welcome {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 25px;
+}
+.welcome h1 { margin: 0; font-size: 26px; }
+.welcome p { color: var(--muted); margin: 7px 0 0; font-size: 14px; }
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 17px;
+}
+.card {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 15px;
+  padding: 21px;
+  box-shadow: 0 3px 12px rgba(20,43,73,.035);
+}
+.card-label {
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 600;
+}
+.card-value {
+  font-size: 30px;
+  font-weight: bold;
+  margin: 16px 0 7px;
+}
+.card-note { color: var(--muted); font-size: 12px; }
+.blue { color: var(--blue); }
+.green { color: var(--green); }
+.yellow { color: var(--yellow); }
+.red { color: var(--red); }
+.section-grid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 17px;
+  margin-top: 20px;
+}
+.section-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+.section-title h3 { margin: 0; font-size: 16px; }
+.section-title span { color: var(--muted); font-size: 11px; }
+.status-panel {
+  background: #f5f9ff;
+  border: 1px solid var(--border);
+  padding: 18px;
+  border-radius: 12px;
+}
+.status-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 13px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 13px;
+}
+.status-row:last-child { border: 0; }
+.pill {
+  padding: 6px 11px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: bold;
+  background: #e6f7ef;
+  color: var(--green);
+}
+.pill.demo-pill { background: #fff2d2; color: #936000; }
+.progress-bg {
+  background: #e7eef8;
+  height: 10px;
+  border-radius: 20px;
+  overflow: hidden;
+  margin-top: 12px;
+}
+.progress {
+  height: 100%;
+  width: 35%;
+  background: var(--blue);
+  border-radius: 20px;
+}
+.chart-wrap { width: 100%; height: 220px; }
+canvas { width: 100%; height: 100%; }
+.activity { list-style: none; padding: 0; margin: 0; }
+.activity li {
+  display: flex;
+  gap: 12px;
+  padding: 13px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 13px;
+}
+.activity li:last-child { border: 0; }
+.dot {
+  width: 9px; height: 9px; border-radius: 50%;
+  background: var(--blue); margin-top: 4px; flex-shrink: 0;
+}
+.activity small { display: block; color: var(--muted); margin-top: 5px; }
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+.info-box {
+  padding: 14px;
+  background: #f5f9ff;
+  border-radius: 10px;
+}
+.info-box small { color: var(--muted); font-size: 11px; }
+.info-box p { margin: 7px 0 0; font-size: 13px; font-weight: bold; }
+footer {
+  text-align: center;
+  padding: 25px 10px;
+  color: var(--muted);
+  font-size: 11px;
+}
+@media(max-width:850px) {
+  .grid { grid-template-columns: repeat(2, 1fr); }
+  .section-grid { grid-template-columns: 1fr; }
+}
+@media(max-width:500px) {
+  header { padding: 14px 5%; }
+  .brand h2 { font-size: 17px; }
+  .demo { font-size: 9px; }
+  main { padding: 23px 4%; }
+  .welcome h1 { font-size: 22px; }
+  .grid { gap: 10px; }
+  .card { padding: 15px; }
+  .card-value { font-size: 25px; }
+  .info-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand">
+    <div class="logo">💧</div>
+    <div>
+      <h2>AGAPAY SYSTEM</h2>
+      <p>Automated Water Monitoring Dashboard</p>
+    </div>
+  </div>
+  <div class="demo">DEMO DATA</div>
+</header>
+
+<main>
+  <div class="welcome">
+    <div>
+      <h1>System Overview</h1>
+      <p>Monitor water levels and pumping status in one place.</p>
+    </div>
+    <span class="pill demo-pill">● Sample readings only</span>
+  </div>
+
+  <div class="grid">
+    <div class="card">
+      <div class="card-label">Water Level</div>
+      <div class="card-value blue" id="waterLevel">12.5 cm</div>
+      <div class="card-note">Sample water measurement</div>
+    </div>
+    <div class="card">
+      <div class="card-label">Water Status</div>
+      <div class="card-value green" id="waterStatus">LOW</div>
+      <div class="card-note">Current sample condition</div>
+    </div>
+    <div class="card">
+      <div class="card-label">Pump Status</div>
+      <div class="card-value green" id="pumpStatus">OFF</div>
+      <div class="card-note">Sample pump condition</div>
+    </div>
+    <div class="card">
+      <div class="card-label">Connection</div>
+      <div class="card-value red">OFFLINE</div>
+      <div class="card-note">Hardware not connected</div>
+    </div>
+  </div>
+
+  <div class="section-grid">
+    <section class="card">
+      <div class="section-title">
+        <h3>Water Level History</h3>
+        <span>Illustrative sample data</span>
+      </div>
+      <div class="chart-wrap">
+        <canvas id="waterChart"></canvas>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="section-title">
+        <h3>System Status</h3>
+        <span>Overview</span>
+      </div>
+      <div class="status-panel">
+        <div class="status-row">
+          <span>Water condition</span>
+          <strong id="condition">LOW</strong>
+        </div>
+        <div class="status-row">
+          <span>Pumping operation</span>
+          <strong id="operation">Inactive</strong>
+        </div>
+        <div class="status-row">
+          <span>Arduino connection</span>
+          <span class="pill demo-pill">Not connected</span>
+        </div>
+        <div style="margin-top:18px">
+          <div class="status-row" style="border:0;padding:0">
+            <span>Illustrative water level</span>
+            <strong id="percentage">35%</strong>
+          </div>
+          <div class="progress-bg">
+            <div class="progress" id="progress"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <div class="section-grid">
+    <section class="card">
+      <div class="section-title">
+        <h3>Recent Activity</h3>
+        <span>Sample log</span>
+      </div>
+      <ul class="activity">
+        <li><span class="dot"></span><div>Dashboard initialized<small>Sample system event</small></div></li>
+        <li><span class="dot"></span><div>Water level reading received<small>12.5 cm · Sample reading</small></div></li>
+        <li><span class="dot"></span><div>Pump status: OFF<small>Sample operation</small></div></li>
+        <li><span class="dot"></span><div>Hardware connection pending<small>Awaiting future integration</small></div></li>
+      </ul>
+    </section>
+
+    <section class="card">
+      <div class="section-title">
+        <h3>System Information</h3>
+        <span>Project details</span>
+      </div>
+      <div class="info-grid">
+        <div class="info-box">
+          <small>Project</small>
+          <p>AGAPAY</p>
+        </div>
+        <div class="info-box">
+          <small>Controller</small>
+          <p>Arduino Uno</p>
+        </div>
+        <div class="info-box">
+          <small>Sensor</small>
+          <p>HC-SR04</p>
+        </div>
+        <div class="info-box">
+          <small>Monitoring</small>
+          <p>Water Level</p>
+        </div>
+        <div class="info-box">
+          <small>Operation</small>
+          <p>Automated Pump</p>
+        </div>
+        <div class="info-box">
+          <small>Website Mode</small>
+          <p>Demo Version</p>
+        </div>
+      </div>
+    </section>
+  </div>
+</main>
+
+<footer>
+  AGAPAY SYSTEM · Automated Gauge and Pumping Assessment Yield<br>
+  School Research Prototype · Dashboard Preview
+</footer>
+
+<script>
+const canvas = document.getElementById("waterChart");
+const ctx = canvas.getContext("2d");
+
+function drawChart() {
+  const rect = canvas.getBoundingClientRect();
+  const ratio = window.devicePixelRatio || 1;
+  canvas.width = rect.width * ratio;
+  canvas.height = rect.height * ratio;
+  ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
+
+  const w = rect.width;
+  const h = rect.height;
+  const values = [7, 9, 8, 13, 11, 15, 12.5];
+  const labels = ["8 AM", "9 AM", "10 AM", "11 AM", "12 PM", "1 PM", "2 PM"];
+  const left = 30, right = 10, top = 15, bottom = 28;
+  const chartW = w - left - right;
+  const chartH = h - top - bottom;
+
+  ctx.clearRect(0, 0, w, h);
+  ctx.font = "10px Arial";
+  ctx.fillStyle = "#718096";
+  ctx.strokeStyle = "#e8eef6";
+  ctx.lineWidth = 1;
+
+  for (let i = 0; i <= 4; i++) {
+    const y = top + chartH * i / 4;
+    ctx.beginPath();
+    ctx.moveTo(left, y);
+    ctx.lineTo(w - right, y);
+    ctx.stroke();
+    ctx.fillText(String(20 - i * 5), 4, y + 3);
+  }
+
+  const points = values.map((v, i) => ({
+    x: left + chartW * i / (values.length - 1),
+    y: top + chartH * (1 - v / 20)
+  }));
+
+  ctx.beginPath();
+  points.forEach((p, i) => {
+    if (i === 0) ctx.moveTo(p.x, p.y);
+    else ctx.lineTo(p.x, p.y);
+  });
+  ctx.strokeStyle = "#1769d2";
+  ctx.lineWidth = 3;
+  ctx.stroke();
+
+  points.forEach((p, i) => {
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, 4, 0, Math.PI * 2);
+    ctx.fillStyle = "#1769d2";
+    ctx.fill();
+    ctx.fillStyle = "#718096";
+    ctx.textAlign = "center";
+    ctx.fillText(labels[i], p.x, h - 8);
+  });
+  ctx.textAlign = "left";
+}
+drawChart();
+window.addEventListener("resize", drawChart);
+</script>
+
+</body>
+</html>
+
