@@ -204,6 +204,55 @@ footer {
 </head>
 <body>
 
+<!-- AGAPAY LIVE DATE AND TIME -->
+<div class="live-datetime">
+  <div id="agapayTime">--:--:-- --</div>
+  <div id="agapayDate">Loading date...</div>
+</div>
+
+<style>
+.live-datetime {
+  text-align: right;
+  padding: 10px 20px;
+  color: #ffffff;
+}
+#agapayTime {
+  font-size: 22px;
+  font-weight: bold;
+}
+#agapayDate {
+  font-size: 13px;
+  opacity: 0.8;
+}
+</style>
+
+<script>
+function updateAgapayClock() {
+  const now = new Date();
+
+  document.getElementById("agapayTime").textContent =
+    now.toLocaleTimeString("en-PH", {
+      timeZone: "Asia/Manila",
+      hour: "2-digit",
+      minute: "2-digit",
+      second: "2-digit"
+    });
+
+  document.getElementById("agapayDate").textContent =
+    now.toLocaleDateString("en-PH", {
+      timeZone: "Asia/Manila",
+      weekday: "long",
+      year: "numeric",
+      month: "long",
+      day: "numeric"
+    });
+}
+
+updateAgapayClock();
+setInterval(updateAgapayClock, 1000);
+</script>
+<!-- END AGAPAY LIVE DATE AND TIME -->
+
 <header>
   <div class="brand">
     <div class="logo">💧</div>
