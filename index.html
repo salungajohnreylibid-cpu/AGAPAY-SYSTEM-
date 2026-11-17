@@ -4,444 +4,84 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AGAPAY SYSTEM | Automated Gauge and Pumping Assessment Yield</title>
+<title>AGAPAY SYSTEM</title>
+<link rel="manifest" href="./manifest.json">
+<meta name="theme-color" content="#142b49">
 
 <style>
 :root {
-  --blue: #1769d2;
-  --dark: #142b49;
-  --light: #f3f7fc;
-  --muted: #718096;
-  --border: #e5edf6;
-  --green: #16a36a;
-  --yellow: #e5a000;
-  --red: #df4b55;
+  --blue:#1769d2; --dark:#142b49; --light:#f3f7fc;
+  --muted:#718096; --border:#e5edf6; --green:#16a36a;
+  --yellow:#e5a000; --red:#df4b55;
 }
-
-* { box-sizing: border-box; }
-
-body {
-  margin: 0;
-  font-family: Arial, Helvetica, sans-serif;
-  background: var(--light);
-  color: var(--dark);
-}
-
-header {
-  background: white;
-  border-bottom: 1px solid var(--border);
-  padding: 18px 5%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 15px;
-}
-
-.brand {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.logo {
-  width: 43px;
-  height: 43px;
-  border-radius: 12px;
-  background: var(--blue);
-  color: white;
-  display: grid;
-  place-items: center;
-  font-size: 23px;
-}
-
-.brand h2 {
-  margin: 0;
-  font-size: 20px;
-  letter-spacing: 1px;
-}
-
-.brand p {
-  margin: 4px 0 0;
-  color: var(--muted);
-  font-size: 11px;
-}
-
-.demo {
-  background: #fff4d9;
-  color: #936000;
-  padding: 8px 12px;
-  border-radius: 20px;
-  font-size: 11px;
-  font-weight: bold;
-}
-
-/* HEADER DATE AND TIME */
-.header-right {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  gap: 20px;
-}
-
-.live-datetime {
-  text-align: right;
-  color: var(--dark);
-  line-height: 1.4;
-}
-
-#agapayTime {
-  font-size: 18px;
-  font-weight: bold;
-  letter-spacing: .4px;
-}
-
-#agapayDate {
-  color: var(--muted);
-  font-size: 11px;
-}
-
-main {
-  max-width: 1250px;
-  margin: auto;
-  padding: 30px 5%;
-}
-
-.welcome {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 12px;
-  margin-bottom: 25px;
-}
-
-.welcome h1 {
-  margin: 0;
-  font-size: 26px;
-}
-
-.welcome p {
-  color: var(--muted);
-  margin: 7px 0 0;
-  font-size: 14px;
-}
-
-.grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 17px;
-}
-
-.card {
-  background: white;
-  border: 1px solid var(--border);
-  border-radius: 15px;
-  padding: 21px;
-  box-shadow: 0 3px 12px rgba(20,43,73,.035);
-}
-
-.card-label {
-  color: var(--muted);
-  font-size: 13px;
-  font-weight: 600;
-}
-
-.card-value {
-  font-size: 30px;
-  font-weight: bold;
-  margin: 16px 0 7px;
-}
-
-.card-note {
-  color: var(--muted);
-  font-size: 12px;
-}
-
-.blue { color: var(--blue); }
-.green { color: var(--green); }
-.yellow { color: var(--yellow); }
-.red { color: var(--red); }
-
-.section-grid {
-  display: grid;
-  grid-template-columns: 1.5fr 1fr;
-  gap: 17px;
-  margin-top: 20px;
-}
-
-.section-title {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 20px;
-}
-
-.section-title h3 {
-  margin: 0;
-  font-size: 16px;
-}
-
-.section-title span {
-  color: var(--muted);
-  font-size: 11px;
-}
-
-.status-panel {
-  background: #f5f9ff;
-  border: 1px solid var(--border);
-  padding: 18px;
-  border-radius: 12px;
-}
-
-.status-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 13px 0;
-  border-bottom: 1px solid var(--border);
-  font-size: 13px;
-}
-
-.status-row:last-child { border: 0; }
-
-.pill {
-  padding: 6px 11px;
-  border-radius: 20px;
-  font-size: 11px;
-  font-weight: bold;
-  background: #e6f7ef;
-  color: var(--green);
-}
-
-.pill.demo-pill {
-  background: #fff2d2;
-  color: #936000;
-}
-
-.progress-bg {
-  background: #e7eef8;
-  height: 10px;
-  border-radius: 20px;
-  overflow: hidden;
-  margin-top: 12px;
-}
-
-.progress {
-  height: 100%;
-  width: 35%;
-  background: var(--blue);
-  border-radius: 20px;
-}
-
-.chart-wrap {
-  width: 100%;
-  height: 220px;
-}
-
-canvas {
-  width: 100%;
-  height: 100%;
-}
-
-.activity {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.activity li {
-  display: flex;
-  gap: 12px;
-  padding: 13px 0;
-  border-bottom: 1px solid var(--border);
-  font-size: 13px;
-}
-
-.activity li:last-child { border: 0; }
-
-.dot {
-  width: 9px;
-  height: 9px;
-  border-radius: 50%;
-  background: var(--blue);
-  margin-top: 4px;
-  flex-shrink: 0;
-}
-
-.activity small {
-  display: block;
-  color: var(--muted);
-  margin-top: 5px;
-}
-
-.info-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 12px;
-}
-
-.info-box {
-  padding: 14px;
-  background: #f5f9ff;
-  border-radius: 10px;
-}
-
-.info-box small {
-  color: var(--muted);
-  font-size: 11px;
-}
-
-.info-box p {
-  margin: 7px 0 0;
-  font-size: 13px;
-  font-weight: bold;
-}
-
-footer {
-  text-align: center;
-  padding: 25px 10px;
-  color: var(--muted);
-  font-size: 11px;
-}
-
-/* SIMULATOR DESIGN */
-.demo-simulator {
-  background: white;
-  border: 1px solid #e5edf6;
-  border-radius: 15px;
-  padding: 22px;
-  margin-top: 20px;
-  box-shadow: 0 3px 12px rgba(20,43,73,.035);
-}
-
-.demo-simulator h3 { margin: 0 0 8px; }
-
-.demo-description {
-  color: #718096;
-  font-size: 13px;
-}
-
-.sim-controls {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  align-items: center;
-  margin: 20px 0;
-}
-
-.sim-controls button {
-  border: 0;
-  border-radius: 9px;
-  padding: 11px 17px;
-  cursor: pointer;
-  font-weight: bold;
-  background: #1769d2;
-  color: white;
-}
-
-.sim-controls button.secondary {
-  background: #eaf1fb;
-  color: #1769d2;
-}
-
-.sim-slider {
-  width: 100%;
-  accent-color: #1769d2;
-  cursor: pointer;
-}
-
-.sim-reading {
-  background: #f3f7fc;
-  border-radius: 12px;
-  padding: 18px;
-  margin-top: 15px;
-}
-
-.sim-reading strong { font-size: 26px; }
-
-.sim-grid {
-  display: grid;
-  grid-template-columns: repeat(3,1fr);
-  gap: 12px;
-  margin-top: 15px;
-}
-
-.sim-item {
-  background: #f5f9ff;
-  padding: 15px;
-  border-radius: 10px;
-}
-
-.sim-item small {
-  color: #718096;
-  display: block;
-  margin-bottom: 7px;
-}
-
-.sim-item b { font-size: 16px; }
-
-.sim-log {
-  max-height: 180px;
-  overflow-y: auto;
-  padding: 0;
-  list-style: none;
-}
-
-.sim-log li {
-  padding: 10px 0;
-  border-bottom: 1px solid #e5edf6;
-  font-size: 12px;
-}
-
-.sim-log small {
-  color: #718096;
-  display: block;
-  margin-top: 4px;
-}
-
-/* RESPONSIVE DESIGN */
+* {box-sizing:border-box}
+body {margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--light);color:var(--dark)}
+header {background:white;border-bottom:1px solid var(--border);padding:18px 5%;display:flex;justify-content:space-between;align-items:center;gap:15px}
+.brand {display:flex;align-items:center;gap:12px}
+.logo {width:43px;height:43px;border-radius:12px;background:var(--blue);color:white;display:grid;place-items:center;font-size:23px}
+.brand h2 {margin:0;font-size:20px;letter-spacing:1px}
+.brand p {margin:4px 0 0;color:var(--muted);font-size:11px}
+.header-right {text-align:right}
+#agapayTime {font-size:18px;font-weight:bold}
+#agapayDate {color:var(--muted);font-size:11px}
+main {max-width:1250px;margin:auto;padding:30px 5%}
+.welcome {display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;margin-bottom:25px}
+.welcome h1 {margin:0;font-size:26px}
+.welcome p {color:var(--muted);margin:7px 0 0;font-size:14px}
+.grid {display:grid;grid-template-columns:repeat(4,1fr);gap:17px}
+.card {background:white;border:1px solid var(--border);border-radius:15px;padding:21px;box-shadow:0 3px 12px rgba(20,43,73,.035)}
+.card-label {color:var(--muted);font-size:13px;font-weight:600}
+.card-value {font-size:30px;font-weight:bold;margin:16px 0 7px}
+.card-note {color:var(--muted);font-size:12px}
+.blue {color:var(--blue)} .green {color:var(--green)}
+.yellow {color:var(--yellow)} .red {color:var(--red)}
+.section-grid {display:grid;grid-template-columns:1.5fr 1fr;gap:17px;margin-top:20px}
+.section-title {display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:20px}
+.section-title h3 {margin:0;font-size:16px}
+.section-title span {color:var(--muted);font-size:11px}
+.status-panel {background:#f5f9ff;border:1px solid var(--border);padding:18px;border-radius:12px}
+.status-row {display:flex;justify-content:space-between;align-items:center;padding:13px 0;border-bottom:1px solid var(--border);font-size:13px;gap:10px}
+.status-row:last-child {border:0}
+.pill {padding:6px 11px;border-radius:20px;font-size:11px;font-weight:bold;background:#e6f7ef;color:var(--green)}
+.pill.offline {background:#fdebed;color:var(--red)}
+.pill.waiting {background:#fff2d2;color:#936000}
+.progress-bg {background:#e7eef8;height:10px;border-radius:20px;overflow:hidden;margin-top:12px}
+.progress {height:100%;width:0%;background:var(--blue);border-radius:20px;transition:width .3s}
+.chart-wrap {width:100%;height:220px}
+canvas {width:100%;height:100%}
+.activity {list-style:none;padding:0;margin:0}
+.activity li {display:flex;gap:12px;padding:13px 0;border-bottom:1px solid var(--border);font-size:13px}
+.activity li:last-child {border:0}
+.dot {width:9px;height:9px;border-radius:50%;background:var(--blue);margin-top:4px;flex-shrink:0}
+.activity small {display:block;color:var(--muted);margin-top:5px}
+.info-grid {display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.info-box {padding:14px;background:#f5f9ff;border-radius:10px}
+.info-box small {color:var(--muted);font-size:11px}
+.info-box p {margin:7px 0 0;font-size:13px;font-weight:bold}
+footer {text-align:center;padding:25px 10px;color:var(--muted);font-size:11px}
 @media(max-width:850px) {
-  .grid { grid-template-columns: repeat(2, 1fr); }
-  .section-grid { grid-template-columns: 1fr; }
+  .grid {grid-template-columns:repeat(2,1fr)}
+  .section-grid {grid-template-columns:1fr}
 }
-
-@media(max-width:600px) {
-  .header-right {
-    flex-direction: column;
-    align-items: flex-end;
-    gap: 7px;
-  }
-
-  #agapayTime { font-size: 15px; }
-  #agapayDate { font-size: 10px; }
-}
-
 @media(max-width:550px) {
-  .sim-grid { grid-template-columns: 1fr; }
-}
-
-@media(max-width:500px) {
-  header { padding: 14px 5%; }
-  .brand h2 { font-size: 17px; }
-  .demo { font-size: 9px; }
-  main { padding: 23px 4%; }
-  .welcome h1 { font-size: 22px; }
-  .grid { gap: 10px; }
-  .card { padding: 15px; }
-  .card-value { font-size: 25px; }
-  .info-grid { grid-template-columns: 1fr; }
+  header {padding:14px 5%}
+  .brand h2 {font-size:17px}
+  .brand p {font-size:9px}
+  #agapayTime {font-size:15px}
+  #agapayDate {font-size:9px}
+  main {padding:23px 4%}
+  .welcome h1 {font-size:22px}
+  .grid {gap:10px}
+  .card {padding:15px}
+  .card-value {font-size:23px}
+  .info-grid {grid-template-columns:1fr}
 }
 </style>
-  
-  <link rel="manifest" href="./manifest.json">
-<meta name="theme-color" content="#142b49">
 </head>
 
 <body>
 
-<!-- MAIN HEADER -->
-<header class="header">
+<header>
   <div class="brand">
     <div class="logo">💧</div>
     <div>
@@ -449,205 +89,272 @@ footer {
       <p>Automated Gauge and Pumping Assessment Yield</p>
     </div>
   </div>
-
   <div class="header-right">
-    <div class="live-datetime">
-      <div id="agapayTime">--:--:--</div>
-      <div id="agapayDate">Loading date...</div>
-    </div>
-
+    <div id="agapayTime">--:--:--</div>
+    <div id="agapayDate">Loading date...</div>
   </div>
 </header>
 
 <main>
-  <div class="welcome">
-    <div>
-      <h1>System Overview</h1>
-      <p>Monitor water levels and pumping status in one place.</p>
-    </div>
-    <span class="pill demo-pill">● Sample readings only</span>
+
+<div class="welcome">
+  <div>
+    <h1>System Overview</h1>
+    <p>Monitor water levels and pumping status in one place.</p>
+  </div>
+  <span class="pill offline" id="connectionBadge">● CONNECTING</span>
+</div>
+
+<div class="grid">
+  <div class="card">
+    <div class="card-label">Water Level</div>
+    <div class="card-value blue" id="waterLevel">-- cm</div>
+    <div class="card-note">Live water measurement</div>
   </div>
 
-  <!-- DASHBOARD CARDS -->
-  <div class="grid">
-    <div class="card">
-      <div class="card-label">Water Level</div>
-      <div class="card-value blue" id="waterLevel">12.5 cm</div>
-      <div class="card-note">Sample water measurement</div>
-    </div>
-
-    <div class="card">
-      <div class="card-label">Water Status</div>
-      <div class="card-value green" id="waterStatus">LOW</div>
-      <div class="card-note">Current sample condition</div>
-    </div>
-
-    <div class="card">
-      <div class="card-label">Pump Status</div>
-      <div class="card-value green" id="pumpStatus">OFF</div>
-      <div class="card-note">Sample pump condition</div>
-    </div>
-
-    <div class="card">
-      <div class="card-label">Connection</div>
-      <div class="card-value red">OFFLINE</div>
-      <div class="card-note">Hardware not connected</div>
-    </div>
+  <div class="card">
+    <div class="card-label">Water Status</div>
+    <div class="card-value" id="waterStatus">WAITING</div>
+    <div class="card-note">Current water condition</div>
   </div>
 
-  <!-- CHART AND SYSTEM STATUS -->
-  <div class="section-grid">
-    <section class="card">
-      <div class="section-title">
-        <h3>Water Level History</h3>
-        <span>Illustrative sample data</span>
-      </div>
-      <div class="chart-wrap">
-        <canvas id="waterChart"></canvas>
-      </div>
-    </section>
-
-    <section class="card">
-      <div class="section-title">
-        <h3>System Status</h3>
-        <span>Overview</span>
-      </div>
-
-      <div class="status-panel">
-        <div class="status-row">
-          <span>Water condition</span>
-          <strong id="condition">LOW</strong>
-        </div>
-
-        <div class="status-row">
-          <span>Pumping operation</span>
-          <strong id="operation">Inactive</strong>
-        </div>
-
-        <div class="status-row">
-          <span>Arduino connection</span>
-          <span class="pill demo-pill">Not connected</span>
-        </div>
-
-        <div style="margin-top:18px">
-          <div class="status-row" style="border:0;padding:0">
-            <span>Illustrative water level</span>
-            <strong id="percentage">35%</strong>
-          </div>
-
-          <div class="progress-bg">
-            <div class="progress" id="progress"></div>
-          </div>
-        </div>
-      </div>
-    </section>
+  <div class="card">
+    <div class="card-label">Pump Status</div>
+    <div class="card-value" id="pumpStatus">--</div>
+    <div class="card-note">Current pump operation</div>
   </div>
 
-  <!-- ACTIVITY AND PROJECT INFORMATION -->
-  <div class="section-grid">
-    <section class="card">
-      <div class="section-title">
-        <h3>Recent Activity</h3>
-        <span>Sample log</span>
-      </div>
-
-      <ul class="activity">
-        <li>
-          <span class="dot"></span>
-          <div>Dashboard initialized
-            <small>Sample system event</small>
-          </div>
-        </li>
-
-        <li>
-          <span class="dot"></span>
-          <div>Water level reading received
-            <small>12.5 cm · Sample reading</small>
-          </div>
-        </li>
-
-        <li>
-          <span class="dot"></span>
-          <div>Pump status: OFF
-            <small>Sample operation</small>
-          </div>
-        </li>
-
-        <li>
-          <span class="dot"></span>
-          <div>Hardware connection pending
-            <small>Awaiting future integration</small>
-          </div>
-        </li>
-      </ul>
-    </section>
-
-    <section class="card">
-      <div class="section-title">
-        <h3>System Information</h3>
-        <span>Project details</span>
-      </div>
-
-      <div class="info-grid">
-        <div class="info-box">
-          <small>Project</small>
-          <p>AGAPAY</p>
-        </div>
-
-        <div class="info-box">
-          <small>Controller</small>
-          <p>Arduino Uno</p>
-        </div>
-
-        <div class="info-box">
-          <small>Sensor</small>
-          <p>HC-SR04</p>
-        </div>
-
-        <div class="info-box">
-          <small>Monitoring</small>
-          <p>Water Level</p>
-        </div>
-
-        <div class="info-box">
-          <small>Operation</small>
-          <p>Automated Pump</p>
-        </div>
-
-        <div class="info-box">
-          <small>Website Mode</small>
-          <p>Demo Version</p>
-        </div>
-      </div>
-    </section>
+  <div class="card">
+    <div class="card-label">Connection</div>
+    <div class="card-value red" id="connectionStatus">OFFLINE</div>
+    <div class="card-note" id="connectionNote">Waiting for Firebase</div>
   </div>
+</div>
+
+<div class="section-grid">
+  <section class="card">
+    <div class="section-title">
+      <h3>Water Level History</h3>
+      <span>Live session readings</span>
+    </div>
+    <div class="chart-wrap">
+      <canvas id="waterChart"></canvas>
+    </div>
+  </section>
+
+  <section class="card">
+    <div class="section-title">
+      <h3>System Status</h3>
+      <span>Live overview</span>
+    </div>
+
+    <div class="status-panel">
+      <div class="status-row">
+        <span>Water condition</span>
+        <strong id="condition">WAITING</strong>
+      </div>
+      <div class="status-row">
+        <span>Pumping operation</span>
+        <strong id="operation">Unknown</strong>
+      </div>
+      <div class="status-row">
+        <span>Storage tank</span>
+        <strong id="tankStatus">Unknown</strong>
+      </div>
+      <div class="status-row">
+        <span>Last update</span>
+        <strong id="lastUpdate">No data</strong>
+      </div>
+      <div style="margin-top:18px">
+        <div class="status-row" style="border:0;padding:0">
+          <span>Water level indicator</span>
+          <strong id="percentage">--%</strong>
+        </div>
+        <div class="progress-bg">
+          <div class="progress" id="progress"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<div class="section-grid">
+  <section class="card">
+    <div class="section-title">
+      <h3>Recent Activity</h3>
+      <span>Live system events</span>
+    </div>
+    <ul class="activity" id="activityLog">
+      <li>
+        <span class="dot"></span>
+        <div>AGAPAY dashboard opened
+          <small>Waiting for Firebase data</small>
+        </div>
+      </li>
+    </ul>
+  </section>
+
+  <section class="card">
+    <div class="section-title">
+      <h3>System Information</h3>
+      <span>Project details</span>
+    </div>
+    <div class="info-grid">
+      <div class="info-box"><small>Project</small><p>AGAPAY</p></div>
+      <div class="info-box"><small>Controller</small><p>Arduino Uno</p></div>
+      <div class="info-box"><small>Wi-Fi Module</small><p>NodeMCU ESP8266</p></div>
+      <div class="info-box"><small>Sensor</small><p>HC-SR04</p></div>
+      <div class="info-box"><small>Database</small><p>Firebase RTDB</p></div>
+      <div class="info-box"><small>Website Mode</small><p>Live Monitoring</p></div>
+    </div>
+  </section>
+</div>
+
 </main>
 
 <footer>
   AGAPAY SYSTEM · Automated Gauge and Pumping Assessment Yield<br>
-  School Research Prototype · Dashboard Preview
+  School Research Prototype · Live Monitoring Dashboard
 </footer>
 
-<!-- WATER LEVEL CHART -->
-<script>
-const canvas = document.getElementById("waterChart");
-const ctx = canvas.getContext("2d");
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/13.4.0/firebase-app.js";
+import {
+  getDatabase,
+  ref,
+  onValue
+} from "https://www.gstatic.com/firebasejs/13.4.0/firebase-database.js";
+
+/* FIREBASE CONFIGURATION */
+const firebaseConfig = {
+  apiKey: "AIzaSyCEIe2g0I_potnX7TfRCndJjwOOMJYgDVk",
+  authDomain: "agapay-system.firebaseapp.com",
+  databaseURL: "https://agapay-system-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "agapay-system",
+  storageBucket: "agapay-system.firebasestorage.app",
+  messagingSenderId: "333055650446",
+  appId: "1:333055650446:web:e8591af53605123819b7df"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
+
+const $ = id => document.getElementById(id);
+const chart = $("waterChart");
+const ctx = chart.getContext("2d");
+
+let readings = [];
+let previousStatus = "";
+let previousPump = null;
+
+function addActivity(message) {
+  const item = document.createElement("li");
+  const dot = document.createElement("span");
+  const content = document.createElement("div");
+  const small = document.createElement("small");
+
+  dot.className = "dot";
+  content.textContent = message;
+  small.textContent = new Date().toLocaleTimeString("en-PH");
+
+  content.appendChild(small);
+  item.append(dot, content);
+  $("activityLog").prepend(item);
+
+  while ($("activityLog").children.length > 8) {
+    $("activityLog").lastElementChild.remove();
+  }
+}
+
+function normalizePump(value) {
+  if (value === true || value === 1) return true;
+  if (typeof value === "string") return value.toUpperCase() === "ON";
+  return false;
+}
+
+function setConnection(online, note) {
+  $("connectionStatus").textContent = online ? "ONLINE" : "OFFLINE";
+  $("connectionStatus").className = "card-value " + (online ? "green" : "red");
+  $("connectionBadge").textContent = online ? "● CONNECTED" : "● OFFLINE";
+  $("connectionBadge").className = "pill " + (online ? "" : "offline");
+  $("connectionNote").textContent = note;
+}
+
+function updateDashboard(data) {
+  if (!data) {
+    $("connectionNote").textContent = "No data found at /agapay";
+    return;
+  }
+
+  const level = Number(data.waterLevel);
+  const status = String(data.waterStatus || "UNKNOWN").toUpperCase();
+  const pump = normalizePump(data.pumpStatus);
+  const tankFull = data.tankFull === true || data.tankFull === 1;
+
+  $("waterLevel").textContent =
+    Number.isFinite(level) ? level.toFixed(1) + " cm" : "-- cm";
+
+  $("waterStatus").textContent = status;
+  $("condition").textContent = status;
+
+  const statusColor =
+    status === "HIGH" ? "red" :
+    status === "MEDIUM" ? "yellow" :
+    status === "LOW" ? "green" : "blue";
+
+  $("waterStatus").className = "card-value " + statusColor;
+
+  $("pumpStatus").textContent = pump ? "ON" : "OFF";
+  $("pumpStatus").className = "card-value " + (pump ? "green" : "blue");
+  $("operation").textContent = pump ? "Active" : "Inactive";
+
+  $("tankStatus").textContent = tankFull ? "FULL" : "AVAILABLE";
+  $("tankStatus").style.color = tankFull ? "#df4b55" : "#16a36a";
+
+  if (Number.isFinite(level)) {
+    const percent = Math.max(0, Math.min(100, (level / 7.5) * 100));
+    $("percentage").textContent = Math.round(percent) + "%";
+    $("progress").style.width = percent + "%";
+
+    readings.push(level);
+    if (readings.length > 20) readings.shift();
+    drawChart();
+  }
+
+  if (data.lastUpdate) {
+    let timestamp = Number(data.lastUpdate);
+    if (timestamp < 1000000000000) timestamp *= 1000;
+
+    const date = new Date(timestamp);
+    $("lastUpdate").textContent =
+      Number.isNaN(date.getTime()) ? "Received" :
+      date.toLocaleTimeString("en-PH", {timeZone:"Asia/Manila"});
+  } else {
+    $("lastUpdate").textContent = "Received";
+  }
+
+  if (status !== previousStatus) {
+    addActivity("Water status changed to " + status);
+    previousStatus = status;
+  }
+
+  if (previousPump !== null && pump !== previousPump) {
+    addActivity("Pump turned " + (pump ? "ON" : "OFF"));
+  }
+  previousPump = pump;
+}
 
 function drawChart() {
-  const rect = canvas.getBoundingClientRect();
+  const rect = chart.getBoundingClientRect();
   const ratio = window.devicePixelRatio || 1;
 
-  canvas.width = rect.width * ratio;
-  canvas.height = rect.height * ratio;
+  chart.width = rect.width * ratio;
+  chart.height = rect.height * ratio;
   ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
 
   const w = rect.width;
   const h = rect.height;
-
-  const values = [7, 9, 8, 13, 11, 15, 12.5];
-  const labels = ["8 AM", "9 AM", "10 AM", "11 AM", "12 PM", "1 PM", "2 PM"];
-
-  const left = 30, right = 10, top = 15, bottom = 28;
+  const left = 30, right = 10, top = 15, bottom = 20;
   const chartW = w - left - right;
   const chartH = h - top - bottom;
 
@@ -655,26 +362,27 @@ function drawChart() {
   ctx.font = "10px Arial";
   ctx.fillStyle = "#718096";
   ctx.strokeStyle = "#e8eef6";
-  ctx.lineWidth = 1;
 
-  for (let i = 0; i <= 4; i++) {
-    const y = top + chartH * i / 4;
-
+  for (let i = 0; i <= 3; i++) {
+    const y = top + chartH * i / 3;
     ctx.beginPath();
     ctx.moveTo(left, y);
     ctx.lineTo(w - right, y);
     ctx.stroke();
-
-    ctx.fillText(String(20 - i * 5), 4, y + 3);
+    ctx.fillText((7.5 - i * 2.5).toFixed(1), 3, y + 3);
   }
 
-  const points = values.map((v, i) => ({
-    x: left + chartW * i / (values.length - 1),
-    y: top + chartH * (1 - v / 20)
+  if (readings.length < 2) {
+    ctx.fillText("Waiting for readings...", left + 10, h / 2);
+    return;
+  }
+
+  const points = readings.map((v, i) => ({
+    x: left + chartW * i / (readings.length - 1),
+    y: top + chartH * (1 - Math.max(0, Math.min(7.5, v)) / 7.5)
   }));
 
   ctx.beginPath();
-
   points.forEach((p, i) => {
     if (i === 0) ctx.moveTo(p.x, p.y);
     else ctx.lineTo(p.x, p.y);
@@ -684,245 +392,51 @@ function drawChart() {
   ctx.lineWidth = 3;
   ctx.stroke();
 
-  points.forEach((p, i) => {
+  points.forEach(p => {
     ctx.beginPath();
-    ctx.arc(p.x, p.y, 4, 0, Math.PI * 2);
+    ctx.arc(p.x, p.y, 3, 0, Math.PI * 2);
     ctx.fillStyle = "#1769d2";
     ctx.fill();
-
-    ctx.fillStyle = "#718096";
-    ctx.textAlign = "center";
-    ctx.fillText(labels[i], p.x, h - 8);
   });
-
-  ctx.textAlign = "left";
 }
 
-drawChart();
+onValue(
+  ref(db, "agapay"),
+  snapshot => {
+    setConnection(true, "Firebase connected");
+
+    if (snapshot.exists()) {
+      updateDashboard(snapshot.val());
+    } else {
+      $("connectionNote").textContent = "Connected; waiting for AGAPAY data";
+    }
+  },
+  error => {
+    console.error("Firebase error:", error);
+    setConnection(false, "Check database access and rules");
+  }
+);
+
 window.addEventListener("resize", drawChart);
+drawChart();
 </script>
 
-<!-- AGAPAY INTERACTIVE DEMO -->
-<section class="demo-simulator">
-  <h3>Interactive Water Level Simulator</h3>
-
-  <p class="demo-description">
-    Adjust the simulated water level to test the AGAPAY monitoring behavior.
-    This is not connected to the actual Arduino hardware.
-  </p>
-
-  <div class="sim-reading">
-    <div class="demo-description">Simulated Water Level</div>
-    <strong id="simLevel">12.5 cm</strong>
-    <div class="demo-description" id="simStatus">Status: LOW</div>
-
-    <input class="sim-slider" id="simSlider"
-      type="range" min="0" max="30" step="0.5" value="12.5">
-
-    <div class="demo-description">0 cm — 30 cm</div>
-  </div>
-
-  <div class="sim-grid">
-    <div class="sim-item">
-      <small>Water Status</small>
-      <b id="simWaterStatus">LOW</b>
-    </div>
-
-    <div class="sim-item">
-      <small>Pump Simulation</small>
-      <b id="simPump">OFF</b>
-    </div>
-
-    <div class="sim-item">
-      <small>Connection</small>
-      <b style="color:#df4b55">DEMO ONLY</b>
-    </div>
-  </div>
-
-  <div class="sim-controls">
-    <button id="simAuto">Start Auto Simulation</button>
-    <button class="secondary" id="simStop">Pause</button>
-    <button class="secondary" id="simReset">Reset</button>
-  </div>
-
-  <div style="margin-top:25px">
-    <h3>Simulation Activity Log</h3>
-    <p class="demo-description">Recent simulated system events</p>
-
-    <ul class="sim-log" id="simLog">
-      <li>Simulator initialized
-        <small>Ready for testing</small>
-      </li>
-    </ul>
-  </div>
-</section>
-
-<script>
-(function () {
-  const slider = document.getElementById("simSlider");
-  const levelText = document.getElementById("simLevel");
-  const statusText = document.getElementById("simStatus");
-  const waterStatus = document.getElementById("simWaterStatus");
-  const pumpText = document.getElementById("simPump");
-  const log = document.getElementById("simLog");
-  const autoButton = document.getElementById("simAuto");
-
-  let pumpOn = false;
-  let timer = null;
-  let lastState = "";
-  let previousPump = false;
-  let level = 12.5;
-
-  // DEMO THRESHOLDS ONLY
-  function getStatus(value) {
-    if (value < 5) return "DRY";
-    if (value < 12) return "LOW";
-    if (value < 20) return "MEDIUM";
-    return "HIGH";
-  }
-
-  function addLog(message) {
-    const item = document.createElement("li");
-    const time = new Date().toLocaleTimeString();
-
-    item.textContent = message;
-
-    const small = document.createElement("small");
-    small.textContent = time + " · Demo event";
-
-    item.appendChild(small);
-    log.prepend(item);
-
-    while (log.children.length > 12) {
-      log.removeChild(log.lastChild);
-    }
-  }
-
-  function updateDashboard() {
-    const status = getStatus(level);
-
-    // Pump starts at HIGH and remains ON until LOW.
-    if (status === "HIGH") {
-      pumpOn = true;
-    } else if (status === "LOW" || status === "DRY") {
-      pumpOn = false;
-    }
-
-    levelText.textContent = level.toFixed(1) + " cm";
-    statusText.textContent = "Status: " + status;
-    waterStatus.textContent = status;
-    pumpText.textContent = pumpOn ? "ON" : "OFF";
-
-    pumpText.style.color = pumpOn ? "#16a36a" : "#718096";
-
-    waterStatus.style.color =
-      status === "HIGH" ? "#df4b55" :
-      status === "MEDIUM" ? "#e5a000" :
-      status === "LOW" ? "#16a36a" : "#718096";
-
-    if (status !== lastState) {
-      addLog("Water status changed to " + status);
-      lastState = status;
-    }
-
-    if (pumpOn !== previousPump) {
-      addLog("Pump simulation " + (pumpOn ? "turned ON" : "turned OFF"));
-      previousPump = pumpOn;
-    }
-
-    // Update the original dashboard cards.
-    const originalLevel = document.getElementById("waterLevel");
-    const originalStatus = document.getElementById("waterStatus");
-    const originalPump = document.getElementById("pumpStatus");
-
-    if (originalLevel) {
-      originalLevel.textContent = level.toFixed(1) + " cm";
-    }
-
-    if (originalStatus) {
-      originalStatus.textContent = status;
-      originalStatus.style.color = waterStatus.style.color;
-    }
-
-    if (originalPump) {
-      originalPump.textContent = pumpOn ? "ON" : "OFF";
-      originalPump.style.color = pumpOn ? "#16a36a" : "#718096";
-    }
-  }
-
-  slider.addEventListener("input", function () {
-    level = Number(slider.value);
-    updateDashboard();
-  });
-
-  autoButton.addEventListener("click", function () {
-    if (timer) return;
-
-    addLog("Automatic simulation started");
-
-    timer = setInterval(function () {
-      level += Math.random() > 0.5 ? 1 : -1;
-
-      if (level > 30) level = 30;
-      if (level < 0) level = 0;
-
-      slider.value = level;
-      updateDashboard();
-    }, 1500);
-  });
-
-  document.getElementById("simStop").addEventListener("click", function () {
-    clearInterval(timer);
-    timer = null;
-    addLog("Simulation paused");
-  });
-
-  document.getElementById("simReset").addEventListener("click", function () {
-    clearInterval(timer);
-    timer = null;
-
-    level = 12.5;
-    slider.value = level;
-
-    pumpOn = false;
-    previousPump = false;
-    lastState = "";
-
-    log.innerHTML = "";
-    addLog("Simulator reset");
-    updateDashboard();
-  });
-
-  updateDashboard();
-})();
-</script>
-
-<!-- PHILIPPINE LIVE DATE AND TIME -->
 <script>
 function updateAgapayClock() {
   const now = new Date();
 
-  const timeElement = document.getElementById("agapayTime");
-  const dateElement = document.getElementById("agapayDate");
+  document.getElementById("agapayTime").textContent =
+    now.toLocaleTimeString("en-PH", {
+      timeZone:"Asia/Manila",
+      hour:"2-digit", minute:"2-digit", second:"2-digit"
+    });
 
-  if (!timeElement || !dateElement) return;
-
-  timeElement.textContent = now.toLocaleTimeString("en-PH", {
-    timeZone: "Asia/Manila",
-    hour: "2-digit",
-    minute: "2-digit",
-    second: "2-digit"
-  });
-
-  dateElement.textContent = now.toLocaleDateString("en-PH", {
-    timeZone: "Asia/Manila",
-    weekday: "long",
-    year: "numeric",
-    month: "long",
-    day: "numeric"
-  });
+  document.getElementById("agapayDate").textContent =
+    now.toLocaleDateString("en-PH", {
+      timeZone:"Asia/Manila",
+      weekday:"long", year:"numeric", month:"long", day:"numeric"
+    });
 }
-
 updateAgapayClock();
 setInterval(updateAgapayClock, 1000);
 </script>
@@ -936,6 +450,7 @@ if ("serviceWorker" in navigator) {
   });
 }
 </script>
-  
+
 </body>
-</html>
+          </html>
+  
